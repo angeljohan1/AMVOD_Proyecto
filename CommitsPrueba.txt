@@ -12,3 +12,6 @@ Quinto Cambio
 
 Cambio realizado por Diana
 sexto cambio rama development
+
+Cambio realizado por Marcos
+Sexto cambio, realizado en la rama release.

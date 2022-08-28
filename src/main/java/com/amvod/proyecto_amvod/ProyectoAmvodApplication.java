@@ -16,7 +16,7 @@ public class ProyectoAmvodApplication {
 	public static void main(String[] args) {
 
 		Empleado empleado = new Empleado("Angel Alcazar", "angel@gmail.com", "Empresa Prueba",
-				"Administrador");
+				"Administrador", "100052826");
 		Empresa empresa = new Empresa("808092789", "Empresa Prueba",
 				"Calle 5 No. 89-78", "37898888" );
 		MovimientoDinero movimiento = new MovimientoDinero(1500000,

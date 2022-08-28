@@ -6,12 +6,14 @@ public class Empleado {
     private String email;
     private String empresaEmpleado;
     private String rol;
+    private String idCedula;
 
-    public Empleado(String nombreEmpleado, String email, String empresaEmpleado, String rol) {
+    public Empleado(String nombreEmpleado, String email, String empresaEmpleado, String rol, String idCedula) {
         this.nombreEmpleado = nombreEmpleado;
         this.email = email;
         this.empresaEmpleado = empresaEmpleado;
         this.rol = rol;
+        this.idCedula = idCedula;
     }
 
     public String getNombreEmpleado() {
@@ -46,6 +48,14 @@ public class Empleado {
         this.rol = rol;
     }
 
+    public String getIdCedula() {
+        return idCedula;
+    }
+
+    public void setIdCedula(String idCedula) {
+        this.idCedula = idCedula;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -53,6 +63,7 @@ public class Empleado {
                 ", email='" + email + '\'' +
                 ", empresaEmpleado='" + empresaEmpleado + '\'' +
                 ", rol='" + rol + '\'' +
+                ", idCedula='" + idCedula + '\'' +
                 '}';
     }
 }

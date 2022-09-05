@@ -1,19 +1,19 @@
 package com.amvod.proyecto_amvod;
 
-import com.amvod.proyecto_amvod.entity.Empleado;
-import com.amvod.proyecto_amvod.entity.Empresa;
-import com.amvod.proyecto_amvod.entity.MovimientoDinero;
+//import com.amvod.proyecto_amvod.entidades.Empleado;
+//import com.amvod.proyecto_amvod.entidades.Empresa;
+//import com.amvod.proyecto_amvod.entidades.MovimientoDinero;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ProyectoAmvodApplication {
 
-	//public static void main(String[] args) {
-	//	SpringApplication.run(ProyectoAmvodApplication.class, args);
-	//}
-
 	public static void main(String[] args) {
+		SpringApplication.run(ProyectoAmvodApplication.class, args);
+	}
+
+	/* public static void main(String[] args) {
 
 		Empleado empleado = new Empleado("Angel Alcazar", "angel@gmail.com", "Empresa Prueba",
 				"Administrador", "100052826");
@@ -27,7 +27,7 @@ public class ProyectoAmvodApplication {
 		System.out.println(movimiento.toString());
 
 
-	}
+	} */
 
 
 }

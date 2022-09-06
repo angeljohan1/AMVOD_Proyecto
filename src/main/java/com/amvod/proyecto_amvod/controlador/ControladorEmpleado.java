@@ -8,32 +8,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/empleados")
 public class ControladorEmpleado {
 
     @Autowired
     private ServicioEmpleado servicioEmpleado;
 
     //METODO PARA VER EMPLEADOS
-    @GetMapping
+    @GetMapping("/empleados")
     public List<Empleado> verEmpleados() {
         return servicioEmpleado.listarEmpleado();
     }
 
     //METODO PARA GUARDAR UN NUEVO EMPLEADO
-    @PostMapping
+    @PostMapping("/empleados")
     public Empleado guardarEmpleado(@RequestBody Empleado empleado) {
         return servicioEmpleado.guadarActualizarEmpleado(empleado);
     }
 
     //METODO PARA BUSCAR UN EMPLEADO POR ID
-    @GetMapping("/{id}")
+    @GetMapping("/empleados/{id}")
     public Empleado empleadoPorID(@PathVariable("id") Integer id) {
         return servicioEmpleado.consultarEmpleadoPorId(id);
     }
 
     //METODO ACTUALIZAR EMPLEADO BUSCADO POR ID
-    @PatchMapping("/{id}")
+    @PatchMapping("/empleados/{id}")
     public Empleado actualizarEmpleado(@PathVariable("id") Integer idEmpleado, @RequestBody Empleado empleado) {
         Empleado emp = servicioEmpleado.consultarEmpleadoPorId(idEmpleado);
         emp.setNombreEmpleado(empleado.getNombreEmpleado());
@@ -45,7 +44,7 @@ public class ControladorEmpleado {
     }
 
     //METODO PARA ELIMINAR UN REGISTRO EMPLEADO
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/empleados/{id}")
     public String eliminarEmpleado(@PathVariable("id") Integer idEmpleado) {
         boolean respuesta = servicioEmpleado.eliminarEmpleado(idEmpleado);
         if (respuesta == true) {

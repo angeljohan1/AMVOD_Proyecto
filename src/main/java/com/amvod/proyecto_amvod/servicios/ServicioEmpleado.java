@@ -13,18 +13,22 @@ public class ServicioEmpleado {
     @Autowired
     private RepositorioEmpleado repoEmpleado;
 
+    //Metodo que muestra los empleados
     public List<Empleado> listarEmpleado() {
         return repoEmpleado.findAll();
     }
 
+    //Metodo que guarda o actualiza un empleado
     public Empleado guadarActualizarEmpleado(Empleado empleado) {
         return repoEmpleado.save(empleado);
     }
 
+    //Metodo que consulta un empleado por id
     public Empleado consultarEmpleadoPorId(Integer idEmpleado) {
         return repoEmpleado.findById(idEmpleado).get();
     }
 
+    //Metodo que elimina un empleado por id
     public boolean eliminarEmpleado (Integer idEmpleado) {
         repoEmpleado.deleteById(idEmpleado);
         if (repoEmpleado.findById(idEmpleado)!=null) {

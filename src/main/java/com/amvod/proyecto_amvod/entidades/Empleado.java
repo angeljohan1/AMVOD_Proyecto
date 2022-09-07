@@ -8,15 +8,20 @@ public class Empleado {
     @Id
     @Column(name = "id_empleado")
     private int idEmpleado;
+
     @Column(name = "nombre_empleado", nullable = false)
     private String nombreEmpleado;
+
     @Column(name = "apellido_empleado", nullable = false)
     private String apellidoEmpleado;
+
     @Column(nullable = false)
     private String email;
+
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresaEmpleado;
+
     @Column(nullable = false)
     private String rol;
 

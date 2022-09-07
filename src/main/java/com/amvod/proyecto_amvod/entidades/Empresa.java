@@ -1,5 +1,7 @@
 package com.amvod.proyecto_amvod.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,16 +13,21 @@ public class Empresa {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa")
     private int idEmpresa;
+
     private String nit;
+
     @Column(name = "nombre_empresa", nullable = false)
     private String nombreEmpresa;
+
     @Column(name = "direccion_empresa")
     private String direccionEmpresa;
+
     @Column(name = "telefono_empresa")
     private String telefonoEmpresa;
-    //@OneToMany(mappedBy = "empresaEmpleado")
-    //@JsonIgnoreProperties
-    //private List<Empleado> empleados;
+
+    @OneToMany(mappedBy = "empresaEmpleado")
+    @JsonIgnoreProperties(value="empresaEmpleado")
+    private List<Empleado> empleados;
 
     public Empresa() {
     }

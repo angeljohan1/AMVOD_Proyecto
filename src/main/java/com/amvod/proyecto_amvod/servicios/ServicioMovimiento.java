@@ -1,12 +1,11 @@
 package com.amvod.proyecto_amvod.servicios;
 
-
-
 import com.amvod.proyecto_amvod.entidades.MovimientoDinero;
 import com.amvod.proyecto_amvod.repositorios.RepositorioMovimiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -39,5 +38,14 @@ public class ServicioMovimiento {
         return false;
     }
 
+    //Buscar movimientos por id del empleado
+    public ArrayList<MovimientoDinero> buscarPorEmpleado(Integer id) {
+        return repoMovimiento.buscarPorEmpleado(id);
+    }
+
+    //Buscar movimientos por id de la empresa a la que pertenecen los empleados
+    public ArrayList<MovimientoDinero> buscarPorEmpresa(Integer id) {
+        return repoMovimiento.buscarPorEmpresa(id);
+    }
 
 }

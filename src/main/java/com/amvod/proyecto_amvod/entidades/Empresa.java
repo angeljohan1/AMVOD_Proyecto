@@ -10,7 +10,7 @@ import java.util.List;
 public class Empresa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa")
     private int idEmpresa;
 
@@ -38,7 +38,7 @@ public class Empresa {
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
         this.telefonoEmpresa = telefonoEmpresa;
-        //this.empleados = empleados;
+        this.empleados = empleados;
     }
 
     public String getDireccionEmpresa() {
@@ -49,13 +49,13 @@ public class Empresa {
         this.direccionEmpresa = direccionEmpresa;
     }
 
-    //public List<Empleado> getEmpleados() {
-    //    return empleados;
-    //}
+    public List<Empleado> getEmpleados() {
+        return empleados;
+    }
 
-    //public void setEmpleados(List<Empleado> empleados) {
-    //    this.empleados = empleados;
-    //}
+    public void setEmpleados(List<Empleado> empleados) {
+        this.empleados = empleados;
+    }
 
     public int getIdEmpresa() {
         return idEmpresa;

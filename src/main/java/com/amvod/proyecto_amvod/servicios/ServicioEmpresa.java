@@ -15,16 +15,19 @@ public class ServicioEmpresa {
 
     //metodo que retorna la lista de empresas
     public List<Empresa> listarEmpresas() {
+
         return repoEmpresa.findAll();
     }
 
     //metodo que guarda o actualiza una empresa
     public Empresa guadarActualizarEmpresa(Empresa empresa) {
+
         return repoEmpresa.save(empresa);
     }
 
     //metodo que consulta una empresa por id
     public Empresa consultarEmpresaPorId(Integer idEmpresa) {
+
         return repoEmpresa.findById(idEmpresa).get();
     }
 

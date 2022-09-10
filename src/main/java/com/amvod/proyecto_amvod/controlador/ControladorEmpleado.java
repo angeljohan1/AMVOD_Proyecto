@@ -16,6 +16,7 @@ public class ControladorEmpleado {
     //METODO PARA VER EMPLEADOS
     @GetMapping("/empleados")
     public List<Empleado> verEmpleados() {
+
         return servicioEmpleado.listarEmpleado();
     }
 

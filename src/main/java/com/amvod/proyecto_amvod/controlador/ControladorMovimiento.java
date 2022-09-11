@@ -32,7 +32,7 @@ public class ControladorMovimiento {
         return servicioMovimiento.consultarMovimientoPorId(id);
     }
 
-    //METODO PARA ELIMINAR UN MOVIMIENTO POR ID
+    //METODO PARA ACTUALIZAR UN MOVIMIENTO POR ID
     @PatchMapping("/movimientos/{id}")
     public MovimientoDinero actualizarMovimiento(@PathVariable("id") Integer id, @RequestBody MovimientoDinero movimiento){
         MovimientoDinero mov = servicioMovimiento.consultarMovimientoPorId(id);
@@ -42,7 +42,7 @@ public class ControladorMovimiento {
         return servicioMovimiento.guadarActualizarMovimiento(mov);
     }
 
-    //METODO PARA ACTUALIZAR UN MOVIMIENTO POR ID
+    //METODO PARA ELIMINAR UN MOVIMIENTO POR ID
     @DeleteMapping("/movimientos/{id}")
     public String eliminarMovimiento(@PathVariable("id") Integer id){
         boolean respuesta= servicioMovimiento.eliminarMovimiento(id);

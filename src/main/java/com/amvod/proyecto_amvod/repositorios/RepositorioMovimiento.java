@@ -15,6 +15,6 @@ public interface RepositorioMovimiento extends JpaRepository<MovimientoDinero, I
     public abstract ArrayList<MovimientoDinero> buscarPorEmpleado(Integer id);
 
     //Metodo para buscar movimientos por empresa
-    @Query(value="select * from movimientos where empleado_id in (select id from empleado where empresa_id= ?1)", nativeQuery = true)
+    @Query(value="select * from movimientos_dinero where id_empleado in (select id_empleado from empleados where id_empresa = ?1)", nativeQuery = true)
     public abstract ArrayList<MovimientoDinero> buscarPorEmpresa(Integer id);
 }

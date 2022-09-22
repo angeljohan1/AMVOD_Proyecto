@@ -32,8 +32,8 @@
                 <td th:text="${empleado.email}"></td>
                 <td th:text="${empleado.empresaEmpleado.nombreEmpresa}"></td>
                 <td th:text="${empleado.rol}"></td>
-                <td><a th:href="@{/empleadoweb/actualizar/{id} (id=${empleado.id})}" class="btn btn-success btn-sm">Actualizar</a>
-                    <a th:href="@{/empleadoweb/eliminar/{id} (id=${empleado.id})}" class="btn btn-danger btn-sm">Eliminar</a>  </td>
+                <td><a th:href="@{/empleadosweb/actualizar/{id} (id=${empleado.idEmpleado})}" class="btn btn-success btn-sm">Actualizar</a>
+                    <a th:href="@{/empleadosweb/eliminar/{id} (id=${empleado.idEmpleado})}" class="btn btn-danger btn-sm">Eliminar</a>  </td>
             </tr>
 
             </tbody>

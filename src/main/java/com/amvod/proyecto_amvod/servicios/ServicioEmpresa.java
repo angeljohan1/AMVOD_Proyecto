@@ -20,10 +20,14 @@ public class ServicioEmpresa {
     }
 
     //metodo que guarda o actualiza una empresa
-    public Empresa guadarActualizarEmpresa(Empresa empresa) {
-
-        return repoEmpresa.save(empresa);
+    public boolean guadarActualizarEmpresa(Empresa empresa) {
+        Empresa emp = repoEmpresa.save(empresa);
+        if (repoEmpresa.findById(emp.getIdEmpresa())!=null) {
+            return true;
+        }
+        return false;
     }
+
 
     //metodo que consulta una empresa por id
     public Empresa consultarEmpresaPorId(Integer idEmpresa) {

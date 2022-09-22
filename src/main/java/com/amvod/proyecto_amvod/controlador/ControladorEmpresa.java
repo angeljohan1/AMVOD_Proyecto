@@ -20,10 +20,13 @@ public class ControladorEmpresa {
     }
 
     //METODO PARA GUARDAR UNA NUEVA EMPRESA
-    @PostMapping("/empresas")
-    public Empresa guardarEmpresa(@RequestBody Empresa empresa) {
-        return servicioEmpresa.guadarActualizarEmpresa(empresa);
-    }
+//    @PostMapping("/empresas")
+//    public Empresa guardarEmpresa(@RequestBody Empresa empresa) {
+//        return servicioEmpresa.guadarActualizarEmpresa(empresa);
+//    }
+
+
+
 
     //METODO PARA BUSCAR UN EMPRESA POR ID
     @GetMapping("/empresas/{id}")
@@ -32,15 +35,15 @@ public class ControladorEmpresa {
     }
 
     //METODO ACTUALIZAR EMPRESA BUSCADO POR ID
-    @PatchMapping("/empresas/{id}")
-    public Empresa actualizarEmpresa(@PathVariable("id") Integer idEmpresa, @RequestBody Empresa empresa) {
-        Empresa emp = servicioEmpresa.consultarEmpresaPorId(idEmpresa);
-        emp.setNombreEmpresa(empresa.getNombreEmpresa());
-        emp.setDireccionEmpresa(empresa.getDireccionEmpresa());
-        emp.setTelefonoEmpresa(empresa.getTelefonoEmpresa());
-        emp.setNit(empresa.getNit());
-        return servicioEmpresa.guadarActualizarEmpresa(emp);
-    }
+//    @PatchMapping("/empresas/{id}")
+//    public Empresa actualizarEmpresa(@PathVariable("id") Integer idEmpresa, @RequestBody Empresa empresa) {
+//        Empresa emp = servicioEmpresa.consultarEmpresaPorId(idEmpresa);
+//        emp.setNombreEmpresa(empresa.getNombreEmpresa());
+//        emp.setDireccionEmpresa(empresa.getDireccionEmpresa());
+//        emp.setTelefonoEmpresa(empresa.getTelefonoEmpresa());
+//        emp.setNit(empresa.getNit());
+//        return servicioEmpresa.guadarActualizarEmpresa(emp);
+//    }
 
     //METODO PARA ELIMINAR UNA EMPRESA
     @DeleteMapping("/empresas/{id}")

@@ -11,36 +11,68 @@
 </head>
 <body style="background-color:#E7F6F2";>
 <div class="container mt-3">
-    <h2>Agregar Empleado</h2>
+    <h2>Agregar nuevo empleado</h2>
     <hr>
     <div>
-        <form th:action="@{/empleadosweb}" method="post" >
-            <div class="container pt-5 col-5">
-
-                <label for="nombre" class="form-label mt-3" >Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="${empleado.nombreEmpleado}" placeholder="Digite nombre del empleado">
-
-                <label for="apellido" class="form-label mt-3">Apellido</label>
-                <input type="text" class="form-control" id="apellido" th:field="${empleado.apellidoEmpleado}">
-
-                <label for="defensa" class="form-label mt-3">Defensa</label>
-                <input type="number" class="form-control" id="defensa" th:field="${pokemon.defensa}">
-
-                <label for="ataque" class="form-label mt-3">Ataque</label>
-                <input type="number" class="form-control" id="ataque" th:field="${pokemon.ataque}">
-
-                <label for="tipo" class="form-label mt-3">Tipo</label>
-                <input type="text" class="form-control" id="tipo" th:field="${pokemon.tipo}">
-
-                <label for="entrenador" class="form-label mt-3">Entrenador</label>
-                <input type="number" class="form-control" id="entrenador" th:field="${pokemon.entrenador.id}">
-
-                <button type="submit" class="btn btn-primary mt-3">Agregar Pokemon</button>
+        <form th:action="@{/agregar-empleado}" method="post">
+            <!--Campo para nombre-->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="nombre">Nombre del empleado:</label>
+                    <div class="col-md-6">
+                        <input type="text" th:field="${empleado.nombreEmpleado}" class="form-control" id="nombre" required="required"></div>
+                </div>
             </div>
+
+            <!--Campo para apellido-->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="apellido">Apellido del empleado:</label>
+                    <div class="col-md-6">
+                        <input type="text" th:field="${empleado.apellidoEmpleado}" class="form-control" id="apellido" required="required"></div>
+                </div>
+            </div>
+
+            <!--Campo para correo-->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="email">Email empleado:</label>
+                    <div class="col-md-6">
+                        <input type="text" th:field="${empleado.email}" class="form-control" id="email" required="required"></div>
+                </div>
+            </div>
+
+            <!--Campo para empresa-->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="empresa">Empresa empleado:</label>
+                    <div class="col-md-6">
+                        <select type="text" th:field="${empleado.empresaEmpleado}" class="form-control" id="empresa" required="required">
+                            <option th:each="empresa: ${empresas}" th:text="${empresa.nombreEmpresa}" th:value="${empresa.idEmpresa}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Campo para Rol-->
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label class="col-md-3" for="rol">Rol empleado:</label>
+                    <div class="col-md-6">
+                        <select th:field="${empleado.rol}" class="form-control" id="rol" required="required">
+                            <option th:value='ADMIN'>Administrativo</option>
+                            <option th:value='OPERATIVO'>Operativo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm mb-3" >Agregar empleado</button>
         </form>
     </div>
     <hr>
-    <a th:href="@{/agregar-empleado}" class="btn btn-primary btn-sm mb-3">Adicionar empleado</a>
+    <a href="javascript: history.go(-1)" class="btn btn-info btn-sm" role="button">Atrás</a>
 </div>
 
 

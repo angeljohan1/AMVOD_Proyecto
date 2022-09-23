@@ -1,6 +1,7 @@
 package com.amvod.proyecto_amvod.servicios;
 
 import com.amvod.proyecto_amvod.entidades.Empleado;
+import com.amvod.proyecto_amvod.entidades.Empresa;
 import com.amvod.proyecto_amvod.repositorios.RepositorioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,12 @@ public class ServicioEmpleado {
     }
 
     //Metodo que guarda o actualiza un empleado
-    public Empleado guadarActualizarEmpleado(Empleado empleado) {
-        return repoEmpleado.save(empleado);
+    public boolean guadarActualizarEmpleado(Empleado empleado) {
+        Empleado empl = repoEmpleado.save(empleado);
+        if (repoEmpleado.findById(empl.getIdEmpleado())!=null) {
+            return true;
+        }
+        return false;
     }
 
     //Metodo que consulta un empleado por id

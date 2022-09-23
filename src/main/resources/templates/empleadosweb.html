@@ -17,6 +17,7 @@
         <table class="table table-md-responsive table-striped">
             <thead>
             <tr class ="bg-dark text-white">
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
                 <th scope="col">Email</th>
@@ -27,13 +28,14 @@
             </thead>
             <tbody>
             <tr th:each="empleado: ${empleados}">
+                <td th:text="${empleado.idEmpleado}"></td>
                 <td th:text="${empleado.nombreEmpleado}"></td>
                 <td th:text="${empleado.apellidoEmpleado}"></td>
                 <td th:text="${empleado.email}"></td>
                 <td th:text="${empleado.empresaEmpleado.nombreEmpresa}"></td>
                 <td th:text="${empleado.rol}"></td>
-                <td><a th:href="@{/empleadosweb/actualizar/{id} (id=${empleado.idEmpleado})}" class="btn btn-success btn-sm">Actualizar</a>
-                    <a th:href="@{/empleadosweb/eliminar/{id} (id=${empleado.idEmpleado})}" class="btn btn-danger btn-sm">Eliminar</a>  </td>
+                <td><a th:href="@{/actualizar-empleado/{id} (id=${empleado.idEmpleado})}" class="btn btn-success btn-sm">Actualizar</a>
+                    <a th:href="@{/eliminarempleado/{id} (id=${empleado.idEmpleado})}" class="btn btn-danger btn-sm">Eliminar</a>  </td>
             </tr>
 
             </tbody>

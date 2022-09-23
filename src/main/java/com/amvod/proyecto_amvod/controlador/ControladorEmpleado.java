@@ -20,11 +20,11 @@ public class ControladorEmpleado {
         return servicioEmpleado.listarEmpleado();
     }
 
-    //METODO PARA GUARDAR UN NUEVO EMPLEADO
-    @PostMapping("/empleados")
-    public Empleado guardarEmpleado(@RequestBody Empleado empleado) {
-        return servicioEmpleado.guadarActualizarEmpleado(empleado);
-    }
+//    //METODO PARA GUARDAR UN NUEVO EMPLEADO
+//    @PostMapping("/empleados")
+//    public Empleado guardarEmpleado(@RequestBody Empleado empleado) {
+//        return servicioEmpleado.guadarActualizarEmpleado(empleado);
+//    }
 
     //METODO PARA BUSCAR UN EMPLEADO POR ID
     @GetMapping("/empleados/{id}")
@@ -32,17 +32,17 @@ public class ControladorEmpleado {
         return servicioEmpleado.consultarEmpleadoPorId(id);
     }
 
-    //METODO ACTUALIZAR EMPLEADO BUSCADO POR ID
-    @PatchMapping("/empleados/{id}")
-    public Empleado actualizarEmpleado(@PathVariable("id") Integer idEmpleado, @RequestBody Empleado empleado) {
-        Empleado emp = servicioEmpleado.consultarEmpleadoPorId(idEmpleado);
-        emp.setNombreEmpleado(empleado.getNombreEmpleado());
-        emp.setApellidoEmpleado(empleado.getApellidoEmpleado());
-        emp.setEmail(empleado.getEmail());
-        emp.setEmpresaEmpleado(empleado.getEmpresaEmpleado());
-        emp.setRol(empleado.getRol());
-        return servicioEmpleado.guadarActualizarEmpleado(emp);
-    }
+//    //METODO ACTUALIZAR EMPLEADO BUSCADO POR ID
+//    @PatchMapping("/empleados/{id}")
+//    public Empleado actualizarEmpleado(@PathVariable("id") Integer idEmpleado, @RequestBody Empleado empleado) {
+//        Empleado emp = servicioEmpleado.consultarEmpleadoPorId(idEmpleado);
+//        emp.setNombreEmpleado(empleado.getNombreEmpleado());
+//        emp.setApellidoEmpleado(empleado.getApellidoEmpleado());
+//        emp.setEmail(empleado.getEmail());
+//        emp.setEmpresaEmpleado(empleado.getEmpresaEmpleado());
+//        emp.setRol(empleado.getRol());
+//        return servicioEmpleado.guadarActualizarEmpleado(emp);
+//    }
 
     //METODO PARA ELIMINAR UN REGISTRO EMPLEADO
     @DeleteMapping("/empleados/{id}")

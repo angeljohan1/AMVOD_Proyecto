@@ -13,9 +13,6 @@ public class Empleado {
     @Column(name = "nombre_empleado", nullable = false)
     private String nombreEmpleado;
 
-    @Column(name = "apellido_empleado", nullable = false)
-    private String apellidoEmpleado;
-
     @Column(nullable = false)
     private String email;
 
@@ -29,10 +26,9 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int idEmpleado, String nombreEmpleado, String apellidoEmpleado, String email, Empresa empresaEmpleado, String rol) {
+    public Empleado(int idEmpleado, String nombreEmpleado, String email, Empresa empresaEmpleado, String rol) {
         this.idEmpleado = idEmpleado;
         this.nombreEmpleado = nombreEmpleado;
-        this.apellidoEmpleado = apellidoEmpleado;
         this.email = email;
         this.empresaEmpleado = empresaEmpleado;
         this.rol = rol;
@@ -52,14 +48,6 @@ public class Empleado {
 
     public void setNombreEmpleado(String nombreEmpleado) {
         this.nombreEmpleado = nombreEmpleado;
-    }
-
-    public String getApellidoEmpleado() {
-        return apellidoEmpleado;
-    }
-
-    public void setApellidoEmpleado(String apellidoEmpleado) {
-        this.apellidoEmpleado = apellidoEmpleado;
     }
 
     public String getEmail() {

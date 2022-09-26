@@ -6,6 +6,7 @@ import com.amvod.proyecto_amvod.repositorios.RepositorioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -40,5 +41,9 @@ public class ServicioEmpleado {
             return true;
         }
         return false;
+    }
+
+    public ArrayList<Empleado> obtenerPorEmpresa(Integer id){
+        return repoEmpleado.findByEmpresa(id);
     }
 }

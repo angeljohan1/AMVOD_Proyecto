@@ -21,10 +21,10 @@ public class ControladorMovimiento {
     }
 
     //METODO PARA GUARDAR UN NUEVO MOVIMIENTO
-    @PostMapping("/movimientos")
-    public MovimientoDinero guardarMovimientos(@RequestBody MovimientoDinero movimientoDinero) {
-        return servicioMovimiento.guadarActualizarMovimiento(movimientoDinero);
-    }
+//    @PostMapping("/movimientos")
+//    public MovimientoDinero guardarMovimientos(@RequestBody MovimientoDinero movimientoDinero) {
+//        return servicioMovimiento.guadarActualizarMovimiento(movimientoDinero);
+//    }
 
     //METODO PARA BUSCAR UN MOVIMIENTO POR ID
     @GetMapping("/movimiento/{id}")
@@ -33,14 +33,14 @@ public class ControladorMovimiento {
     }
 
     //METODO PARA ACTUALIZAR UN MOVIMIENTO POR ID
-    @PatchMapping("/movimientos/{id}")
-    public MovimientoDinero actualizarMovimiento(@PathVariable("id") Integer id, @RequestBody MovimientoDinero movimiento){
-        MovimientoDinero mov = servicioMovimiento.consultarMovimientoPorId(id);
-        mov.setConceptoMov(movimiento.getConceptoMov());
-        mov.setMontoMov(movimiento.getMontoMov());
-        mov.setEmpleado(movimiento.getEmpleado());
-        return servicioMovimiento.guadarActualizarMovimiento(mov);
-    }
+//    @PatchMapping("/movimientos/{id}")
+//    public MovimientoDinero actualizarMovimiento(@PathVariable("id") Integer id, @RequestBody MovimientoDinero movimiento){
+//        MovimientoDinero mov = servicioMovimiento.consultarMovimientoPorId(id);
+//        mov.setConceptoMov(movimiento.getConceptoMov());
+//        mov.setMontoMov(movimiento.getMontoMov());
+//        mov.setEmpleado(movimiento.getEmpleado());
+//        return servicioMovimiento.guadarActualizarMovimiento(mov);
+//    }
 
     //METODO PARA ELIMINAR UN MOVIMIENTO POR ID
     @DeleteMapping("/movimientos/{id}")

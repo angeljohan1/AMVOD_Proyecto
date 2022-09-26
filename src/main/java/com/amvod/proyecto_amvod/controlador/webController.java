@@ -2,8 +2,10 @@ package com.amvod.proyecto_amvod.controlador;
 
 import com.amvod.proyecto_amvod.entidades.Empleado;
 import com.amvod.proyecto_amvod.entidades.Empresa;
+import com.amvod.proyecto_amvod.entidades.MovimientoDinero;
 import com.amvod.proyecto_amvod.servicios.ServicioEmpleado;
 import com.amvod.proyecto_amvod.servicios.ServicioEmpresa;
+import com.amvod.proyecto_amvod.servicios.ServicioMovimiento;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,9 +22,10 @@ public class webController {
 
     @Autowired
     private ServicioEmpleado servicioEmpleado;
-
     @Autowired
     private ServicioEmpresa servicioEmpresa;
+    @Autowired
+    private ServicioMovimiento servicioMovimiento;
 
     @GetMapping("/index")
     public String index() {
@@ -58,6 +61,16 @@ public class webController {
         return "actualizar-empresa";
     }
 
+    // ---------------------------------------ver formulario agregar movimiento
+    @GetMapping("/agregar-movimiento")
+    public String guardarMovimiento(Model model){
+        MovimientoDinero mov= new MovimientoDinero();
+        model.addAttribute("movimiento",mov);
+        List<Empleado> listaEmpleados = servicioEmpleado.listarEmpleado();
+        model.addAttribute("empleados",listaEmpleados);
+        return "agregar-movimiento";
+    }
+
     // ---------------------------------------ver formulario actualizar empleado
     @GetMapping("/actualizar-empleado/{id}")
     private String verEmpleadoParaActualizar(@PathVariable Integer id, Model model){
@@ -66,6 +79,16 @@ public class webController {
         List<Empresa> listaEmpresa = servicioEmpresa.listarEmpresas();
         model.addAttribute("empresas",listaEmpresa);
         return "actualizar-empleado";
+    }
+
+    // ---------------------------------------ver formulario actualizar movimiento
+    @GetMapping("/actualizar-movimiento/{id}")
+    public String verMovimentoParaActualizar(Model model, @PathVariable Integer id){
+        MovimientoDinero mov = servicioMovimiento.consultarMovimientoPorId(id);
+        model.addAttribute("movimiento",mov);
+        List<Empleado> listaEmpleados= servicioEmpleado.listarEmpleado();
+        model.addAttribute("empleados",listaEmpleados);
+        return "actualizar-movimiento";
     }
 
     // ---------------------------------------actualizar empresa
@@ -92,11 +115,34 @@ public class webController {
 
     }
 
+    // ---------------------------------------actualizar movimiento
+    @PostMapping("/actualizar-movimiento")
+    public String actualizarMovimiento(@ModelAttribute("movimiento") MovimientoDinero movimiento, RedirectAttributes redirectAttributes){
+        if(servicioMovimiento.guadarActualizarMovimiento(movimiento)){
+            redirectAttributes.addFlashAttribute("mensaje","updateOK");
+            return "redirect:/movimientosweb";
+        }
+        redirectAttributes.addFlashAttribute("mensaje","updateError");
+        return "redirect:/actualizar-movimiento/"+ movimiento.getId();
+
+    }
+
     // ---------------------------------------ver lista de empresas
     @GetMapping ("/empresasweb")
     public String verEmpresas(Model model){
         model.addAttribute("empresas",servicioEmpresa.listarEmpresas());
         return "empresasweb";
+    }
+
+    // ---------------------------------------ver lista de movimientos
+    @GetMapping ("/movimientosweb")
+    public String verMovimientos(Model model){
+        model.addAttribute("movimientos",servicioMovimiento.listarMovimiento());
+
+        double sumaMonto= servicioMovimiento.obtenerSumaMontos();
+        model.addAttribute("SumaMontos",sumaMonto);//Mandamos la suma de todos los montos a la plantilla
+
+        return "movimientosweb";
     }
 
     // ---------------------------------------guardar nueva empresa
@@ -117,6 +163,17 @@ public class webController {
             return "redirect:/empleadosweb";
         }
         return "redirect:/agregar-empleado";
+    }
+
+    // ---------------------------------------guardar nuevo movimiento
+    @PostMapping("/agregar-movimiento")
+    public String guardarMovimiento(MovimientoDinero mov, RedirectAttributes redirectAttributes){
+        if(servicioMovimiento.guadarActualizarMovimiento(mov)){
+            redirectAttributes.addFlashAttribute("mensaje","saveOK");
+            return "redirect:/movimientosweb";
+        }
+        redirectAttributes.addFlashAttribute("mensaje","saveError");
+        return "redirect:/agregar-movimiento";
     }
 
     // ---------------------------------------eliminar empresa
@@ -141,4 +198,33 @@ public class webController {
         return "redirect:/empleadosweb";
     }
 
+    // ---------------------------------------eliminar movimiento
+    @GetMapping("/eliminarmovimiento/{id}")
+    public String eliminarMovimiento(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        if (servicioMovimiento.eliminarMovimiento(id)==true){
+            redirectAttributes.addFlashAttribute("mensaje","deleteOK");
+            return "redirect:/movimientosweb";
+        }
+        redirectAttributes.addFlashAttribute("mensaje", "deleteError");
+        return "redirect:/movimientosweb";
+    }
+
+    // ---------------------------------------Ver empleados por empresa
+    @GetMapping("/empresasweb/{id}/empleados")
+    public String verEmpleadosPorEmpresa(@PathVariable("id") Integer id, Model model){
+        List<Empleado> listaEmpleados = servicioEmpleado.obtenerPorEmpresa(id);
+        model.addAttribute("empleados",listaEmpleados);
+        return "empleadosweb";
+    }
+
+    // ---------------------------------------Ver movimientos por empresa
+    @GetMapping("/empresasweb/{id}/movimientos")
+    public String movimientosPorEmpresa(@PathVariable("id")Integer id, Model model){
+        List<MovimientoDinero> movlist = servicioMovimiento.buscarPorEmpresa(id);
+        model.addAttribute("movimientos",movlist);
+
+        double sumaMonto=servicioMovimiento.MontosPorEmpresa(id);
+        model.addAttribute("SumaMontos",sumaMonto);
+        return "movimientosweb"; //Llamamos al HTML
+    }
 }

@@ -7,59 +7,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Agregar Empleado</title>
+    <title>Actualizar Movimiento</title>
 </head>
 <body style="background-color:#E7F6F2";>
 <div class="container mt-3">
-    <h2>Agregar nuevo empleado</h2>
+    <h2>Actualizar movimiento</h2>
     <hr>
     <div>
-        <form th:action="@{/agregar-empleado}" method="post">
-            <!--Campo para nombre-->
+        <form th:action="@{/actualizar-movimiento}" method="post">
+
+            <!--Campo para ID-->
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3" for="nombre">Nombre del empleado:</label>
+                    <label class="col-md-3" for="id">ID:</label>
                     <div class="col-md-6">
-                        <input type="text" th:field="${empleado.nombreEmpleado}" class="form-control" id="nombre" required="required"></div>
+                        <input type="text" th:field="${movimiento.id}" class="form-control" id="id" required="required" readonly></div>
                 </div>
             </div>
 
-            <!--Campo para correo-->
+            <!--Campo para concepto-->
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3" for="email">Email empleado:</label>
+                    <label class="col-md-3" for="concepto">Concepto Movimiento:</label>
                     <div class="col-md-6">
-                        <input type="text" th:field="${empleado.email}" class="form-control" id="email" required="required"></div>
+                        <input type="text" th:field="${movimiento.conceptoMov}" class="form-control" id="concepto" required="required"></div>
                 </div>
             </div>
 
-            <!--Campo para empresa-->
+            <!--Campo para monto-->
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3" for="empresa">Empresa empleado:</label>
+                    <label class="col-md-3" for="monto">Monto del movimiento:</label>
                     <div class="col-md-6">
-                        <select type="text" th:field="${empleado.empresaEmpleado}" class="form-control" id="empresa" required="required">
-                            <option th:each="empresa: ${empresas}" th:text="${empresa.nombreEmpresa}" th:value="${empresa.idEmpresa}"></option>
-                        </select>
-                    </div>
+                        <input type="number" th:field="${movimiento.montoMov}" class="form-control" id="monto" required="required"></div>
                 </div>
             </div>
 
-            <!--Campo para Rol-->
+            <!--Campo para empleado-->
             <div class="row">
                 <div class="form-group col-md-12">
-                    <label class="col-md-3" for="rol">Rol empleado:</label>
+                    <label class="col-md-3" for="empleado">Empleado que realiza el movimiento:</label>
                     <div class="col-md-6">
-                        <select th:field="${empleado.rol}" class="form-control" id="rol" required="required">
-                            <option th:value='ADMIN'>Administrativo</option>
-                            <option th:value='OPERATIVO'>Operativo</option>
+                        <select type="text" th:field="${movimiento.empleado}" class="form-control" id="empleado" required="required" readonly>
+                            <option th:each="empleado: ${empleados}" th:text="${empleado.nombreEmpleado}" th:value="${empleado.idEmpleado}"></option>
                         </select>
                     </div>
                 </div>
             </div>
 
             <br>
-            <button type="submit" class="btn btn-primary btn-sm mb-3" >Agregar empleado</button>
+            <button type="submit" class="btn btn-primary btn-sm mb-3" >Actualizar movimiento</button>
         </form>
     </div>
     <hr>

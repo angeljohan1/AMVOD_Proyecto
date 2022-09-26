@@ -18,8 +18,7 @@
             <thead>
             <tr class ="bg-dark text-white">
                 <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
+                <th scope="col">Nombre Empleado</th>
                 <th scope="col">Email</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Rol</th>
@@ -30,7 +29,6 @@
             <tr th:each="empleado: ${empleados}">
                 <td th:text="${empleado.idEmpleado}"></td>
                 <td th:text="${empleado.nombreEmpleado}"></td>
-                <td th:text="${empleado.apellidoEmpleado}"></td>
                 <td th:text="${empleado.email}"></td>
                 <td th:text="${empleado.empresaEmpleado.nombreEmpresa}"></td>
                 <td th:text="${empleado.rol}"></td>
@@ -43,6 +41,8 @@
     </div>
     <hr>
     <a th:href="@{/agregar-empleado}" class="btn btn-primary btn-sm mb-3">Adicionar empleado</a>
+    <hr>
+    <a href="javascript: history.go(-1)" class="btn btn-info btn-sm" role="button">Atrás</a>
 </div>
 
 

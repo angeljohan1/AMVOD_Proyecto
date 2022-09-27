@@ -7,6 +7,8 @@ import com.amvod.proyecto_amvod.servicios.ServicioEmpleado;
 import com.amvod.proyecto_amvod.servicios.ServicioEmpresa;
 import com.amvod.proyecto_amvod.servicios.ServicioMovimiento;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +29,11 @@ public class webController {
     @Autowired
     private ServicioMovimiento servicioMovimiento;
 
-    @GetMapping("/index")
-    public String index() {
+    @GetMapping("/")
+    public String index(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if (principal != null) {
+            System.out.println(principal.getClaims());
+        }
         return "index";
     }
     // ---------------------------------------ver lista de empleados
@@ -227,4 +232,6 @@ public class webController {
         model.addAttribute("SumaMontos",sumaMonto);
         return "movimientosweb"; //Llamamos al HTML
     }
+
+
 }

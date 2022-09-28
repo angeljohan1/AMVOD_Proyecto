@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -jar target/proyecto_amvod-0.0.1-SNAPSHOT.jar

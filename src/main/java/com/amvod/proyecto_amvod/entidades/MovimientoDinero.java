@@ -15,7 +15,7 @@ public class MovimientoDinero {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "monto_movimiento", nullable = false)
-    private double montoMov;
+    private Double montoMov;
     @Column(name = "concepto", nullable = false)
     private String conceptoMov;
     @ManyToOne
@@ -49,11 +49,11 @@ public class MovimientoDinero {
         this.id = id;
     }
 
-    public double getMontoMov() {
+    public Double getMontoMov() {
         return montoMov;
     }
 
-    public void setMontoMov(double montoMov) {
+    public void setMontoMov(Double montoMov) {
         this.montoMov = montoMov;
     }
 

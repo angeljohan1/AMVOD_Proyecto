@@ -3,9 +3,11 @@ package com.amvod.proyecto_amvod.controlador;
 import com.amvod.proyecto_amvod.entidades.Empleado;
 import com.amvod.proyecto_amvod.entidades.Empresa;
 import com.amvod.proyecto_amvod.entidades.MovimientoDinero;
+import com.amvod.proyecto_amvod.entidades.Usuario;
 import com.amvod.proyecto_amvod.servicios.ServicioEmpleado;
 import com.amvod.proyecto_amvod.servicios.ServicioEmpresa;
 import com.amvod.proyecto_amvod.servicios.ServicioMovimiento;
+import com.amvod.proyecto_amvod.servicios.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
@@ -28,14 +30,21 @@ public class webController {
     private ServicioEmpresa servicioEmpresa;
     @Autowired
     private ServicioMovimiento servicioMovimiento;
+    @Autowired
+    private ServicioUsuario servicioUsuario;
 
+    // ---------------------------------------login
     @GetMapping("/")
     public String index(Model model, @AuthenticationPrincipal OidcUser principal) {
         if (principal != null) {
-            System.out.println(principal.getClaims());
+            Usuario usuario = servicioUsuario.getOrCreateUsuario(principal.getClaims()); //Se pasan los datos del usuario logead
+            model.addAttribute("usuario", usuario);
         }
         return "index";
     }
+
+
+
     // ---------------------------------------ver lista de empleados
     @GetMapping("/empleadosweb")
     public String verEmpleados (Model model) {
@@ -69,8 +78,10 @@ public class webController {
     // ---------------------------------------ver formulario agregar movimiento
     @GetMapping("/agregar-movimiento")
     public String guardarMovimiento(Model model){
+
         MovimientoDinero mov= new MovimientoDinero();
         model.addAttribute("movimiento",mov);
+
         List<Empleado> listaEmpleados = servicioEmpleado.listarEmpleado();
         model.addAttribute("empleados",listaEmpleados);
         return "agregar-movimiento";
@@ -144,7 +155,7 @@ public class webController {
     public String verMovimientos(Model model){
         model.addAttribute("movimientos",servicioMovimiento.listarMovimiento());
 
-        double sumaMonto= servicioMovimiento.obtenerSumaMontos();
+        Double sumaMonto= servicioMovimiento.obtenerSumaMontos();
         model.addAttribute("SumaMontos",sumaMonto);//Mandamos la suma de todos los montos a la plantilla
 
         return "movimientosweb";
@@ -228,7 +239,7 @@ public class webController {
         List<MovimientoDinero> movlist = servicioMovimiento.buscarPorEmpresa(id);
         model.addAttribute("movimientos",movlist);
 
-        double sumaMonto=servicioMovimiento.MontosPorEmpresa(id);
+        Double sumaMonto=servicioMovimiento.MontosPorEmpresa(id);
         model.addAttribute("SumaMontos",sumaMonto);
         return "movimientosweb"; //Llamamos al HTML
     }

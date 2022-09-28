@@ -58,12 +58,12 @@ public class ServicioMovimiento {
     }
 
     //------------------ sumar los montos
-    public double obtenerSumaMontos(){
+    public Double obtenerSumaMontos(){
         return repoMovimiento.SumarMonto();
     }
 
     //Servicio para ver la suma de los montos por empresa
-    public double MontosPorEmpresa(Integer id){
+    public Double MontosPorEmpresa(Integer id){
         return repoMovimiento.MontosPorEmpresa(id);
     }
 

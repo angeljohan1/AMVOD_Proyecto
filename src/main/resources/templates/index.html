@@ -12,18 +12,20 @@
 <body style="background-color:#E7F6F2";>
 
 <div class="px-4 py-5 ny-5 text-center">
-    <img th:src="@{\static\img\empresa.png}" class="d-block mx-auto mb-1" height="150" alt="Gestion">
+    <!-- <img th:src="@{classpath:static\img\empresa.png}" class="d-block mx-auto mb-1" height="150" alt="Gestion"> -->
     <h1 class="display-5 fw-bold">Gestion AMVOD</h1>
     <hr>
     <div class="col-lg-6 mx-auto">
         <p> -  Gestiona empleados, empresas y movimientos  -  </p>
-
+        <hr>
         <div sec:authorize="!isAuthenticated()">
-            <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary btn-lg px-4 gap-3">Inicie sesion</a>
+            <a th:href="@{/oauth2/authorization/auth0}" class="btn btn-primary btn-md px-4 gap-3">Inicie sesion</a>
         </div>
 
+
         <div sec:authorize="isAuthenticated()">
-            <a th:href="@{/empresasweb}" class="btn btn-primary btn-lg px-4 gap-3">Entra a la aplicacion</a>
+            <h3 th:text="'Bienvenido, ' + ${usuario.getEmail()}"></h3>
+            <a th:href="@{/empresasweb}" class="btn btn-primary btn-md px-4 gap-3 mt-2">Entra a la aplicacion</a>
         </div>
 
     </div>

@@ -20,9 +20,9 @@ public interface RepositorioMovimiento extends JpaRepository<MovimientoDinero, I
 
     //Metodo para ver la suma de TODOS LOS MOVIMIENTOS
     @Query(value="SELECT SUM(monto_movimiento) from movimientos_dinero", nativeQuery = true)
-    public abstract double SumarMonto();
+    public abstract Double SumarMonto();
 
     //Metodo para ver la suma de los movimientos por empresa
     @Query(value="select sum(monto_movimiento) from movimientos_dinero where id_empleado in (select id_empleado from empleados where id_empresa= ?1)", nativeQuery = true)
-    public abstract double MontosPorEmpresa(Integer id); //Id de la empresa
+    public abstract Double MontosPorEmpresa(Integer id); //Id de la empresa
 }
